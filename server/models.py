@@ -30,7 +30,7 @@ class RestaurantPizza(db.Model, SerializerMixin):
     __tablename__ = 'restaurantspizzas'
 
     id = db.Column(db.Integer, primary_key=True)
-    price = db.Column(db.Integer,  default=0)
+    price = db.Column(db.Integer(),nullable=False)
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
 
@@ -41,4 +41,8 @@ class RestaurantPizza(db.Model, SerializerMixin):
     
     @validates('price')
     def validate_strength(self, key, value):
-        pass
+        if value > 0 and value <=30:
+            return value
+        else :
+            raise ValueError(f"Enter a value above 0 and less than 30")
+
