@@ -21,6 +21,8 @@ class Pizza(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     ingredients = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at =db.Column(db.DateTime, server_default=db.func.now())
 
     restaurantspizzas = db.relationship("RestaurantPizza", back_populates='pizza')  
     serialize_rules = ('-restaurantspizzas.pizza',)
@@ -33,6 +35,8 @@ class RestaurantPizza(db.Model, SerializerMixin):
     price = db.Column(db.Integer(),nullable=False)
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     restaurant = db.relationship("Restaurant", back_populates='restaurantspizzas')  
     pizza = db.relationship("Pizza", back_populates='restaurantspizzas')  
