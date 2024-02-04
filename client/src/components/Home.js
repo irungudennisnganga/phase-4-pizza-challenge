@@ -13,14 +13,7 @@ function Home() {
   function handleDelete(id) {
     fetch(`/restaurants/${id}`, {
       method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        setRestaurants((restaurants) =>
-          restaurants.filter((restaurant) => restaurant.id !== id)
-        );
-      }
-    });
-  }
+    }).then(() => ({ status: 'Delete successful' }));}
 
   return (
     <section className="container">

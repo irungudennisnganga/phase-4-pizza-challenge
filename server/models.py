@@ -11,7 +11,8 @@ class Restaurant(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     address = db.Column(db.String, nullable=False)
 
-    restaurantspizzas = db.relationship("RestaurantPizza", back_populates='restaurant')  
+    restaurantspizzas = db.relationship("RestaurantPizza", backref='restaurants')  
+    pizzas= db.relationship("Pizza", secondary='restaurantspizzas', backref='restaurants', viewonly=True)
     serialize_rules = ('-restaurantspizzas.restaurant',)
 
 
@@ -24,7 +25,7 @@ class Pizza(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at =db.Column(db.DateTime, server_default=db.func.now())
 
-    restaurantspizzas = db.relationship("RestaurantPizza", back_populates='pizza')  
+    restaurantspizzas = db.relationship("RestaurantPizza", backref='pizzas')  
     serialize_rules = ('-restaurantspizzas.pizza',)
 
 
@@ -38,15 +39,15 @@ class RestaurantPizza(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    restaurant = db.relationship("Restaurant", back_populates='restaurantspizzas')  
-    pizza = db.relationship("Pizza", back_populates='restaurantspizzas')  
+    # restaurant = db.relationship("Restaurant", back_populates='restaurantspizzas')  
+    # pizza = db.relationship("Pizza", back_populates='restaurantspizzas')  
 
     serialize_rules = ('-restaurant', '-pizza')
     
     @validates('price')
     def validate_strength(self, key, value):
-        if value > 0 and value <=30:
+        if 1<= value <=30:
             return value
         else :
-            raise ValueError(f"Enter a value above 0 and less than 30")
+            raise ValueError("Enter a value above 0 and less than 30")
 

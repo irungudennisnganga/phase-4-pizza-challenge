@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router";
+import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Restaurant from "./Restaurant";

@@ -31,14 +31,14 @@ pizzas = [
 
 # Associate pizzas with restaurants using RestaurantPizza
 restaurant_pizzas = [
-    RestaurantPizza(restaurant=restaurants[5], pizza=pizzas[0], price=12),
-    RestaurantPizza(restaurant=restaurants[0], pizza=pizzas[1], price=10),
-    RestaurantPizza(restaurant=restaurants[1], pizza=pizzas[4], price=11),
-    RestaurantPizza(restaurant=restaurants[2], pizza=pizzas[2], price=20),
-    RestaurantPizza(restaurant=restaurants[1], pizza=pizzas[3], price=22),
-    RestaurantPizza(restaurant=restaurants[3], pizza=pizzas[3], price=3),
-    RestaurantPizza(restaurant=restaurants[4], pizza=pizzas[4], price=23),
-    RestaurantPizza(restaurant=restaurants[5], pizza=pizzas[2], price=1),
+    RestaurantPizza(restaurants=restaurants[5], pizzas=pizzas[0], price=12),
+    RestaurantPizza(restaurants=restaurants[0], pizzas=pizzas[1], price=10),
+    RestaurantPizza(restaurants=restaurants[1], pizzas=pizzas[4], price=11),
+    RestaurantPizza(restaurants=restaurants[2], pizzas=pizzas[2], price=20),
+    RestaurantPizza(restaurants=restaurants[1], pizzas=pizzas[3], price=22),
+    RestaurantPizza(restaurants=restaurants[3], pizzas=pizzas[3], price=3),
+    RestaurantPizza(restaurants=restaurants[4], pizzas=pizzas[4], price=23),
+    RestaurantPizza(restaurants=restaurants[5], pizzas=pizzas[2], price=1),
 ]
 
 # Add data to the database
